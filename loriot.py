@@ -6,7 +6,7 @@ from datetime import datetime, timedelta, timezone
 
 
 def getLoriotData():
-	ws = create_connection("wss://cn1.loriot.io/app?token=vnwD2wAAAA1jbjEubG9yaW90LmlvPeOCpVPCT9Ao2W5C5Fbtyw==")
+	ws = create_connection("wss://cn1.loriot.io/app?token=vnwESAAAAA1jbjEubG9yaW90Lmlv30o81v16wQa6dwhiBgiS0A==")
 	flag = 1
 	while flag:
 		result = json.loads(ws.recv())
