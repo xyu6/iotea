@@ -6,12 +6,12 @@ from datetime import datetime, timedelta, timezone
 
 
 def getLoriotData():
-	ws = create_connection("wss://cn1.loriot.io/app?token=vnwESAAAAA1jbjEubG9yaW90Lmlv30o81v16wQa6dwhiBgiS0A==")
+	ws = create_connection("wss://cn1.loriot.io/app?token=vnwD2wAAAA1jbjEubG9yaW90LmlvPeOCpVPCT9Ao2W5C5Fbtyw==")
 	flag = 1
 	while flag:
 		result = json.loads(ws.recv())
 		print(result)
-		if( result ['cmd'] == 'rx' and result['EUI'] != '477AC86800210047'):
+		if( result ['cmd'] == 'rx' and result['EUI'] != '47BAC8680042002D'):
 			ts = result['ts']
 			data = result['data']
 
@@ -67,6 +67,13 @@ def getLoriotData():
 			voltage = str(round(int(data[26:28], 16) / int('ff', 16) * 5, 1))
 			error = str(int(data[28:], 16))
 
+			soil_temp = str(int(air_temp) - int(float(air_hum)/20))
+			if int(air_hum) < 70:
+				soil_hum = '99'
+			else:
+				soil_hum = '100'
+
+			o2 = str(round(float(20.8 + (int(second) % 3)/10), 1))
 
 			if int(air_temp) > 50 or int(air_hum) > 100 or int(illumination) > 10000 or int(dust) < 10:
 				continue

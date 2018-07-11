@@ -67,7 +67,9 @@ def initday():
 			if not old:
 				QueryTime = [str(day), str(hour)]
 				old = db.readMinMinute(QueryTime)
-
+			if not old:
+				db.insertFakeData(day)
+				old = db.readMinMinute(QueryTime)
 			try:
 				date = str(day)
 
@@ -104,7 +106,10 @@ def initday():
 	if not old:
 		QueryTime = [str(today), '0']
 		old = db.readMinMinute(QueryTime)
-
+	if not old:
+		db.insertFakeData(today)
+		QueryTime = [str(today), '00']
+		old = db.readMinMinute(QueryTime)
 
 	try:
 		date = str(today)
@@ -316,7 +321,7 @@ def removeZero(string):
 if __name__=="__main__":
 	# ta = threading.Thread(target=app.run(debug=True, port=5000))#, ssl_context='adhoc'))
 	# tb = threading.Thread(target=loriot.getLoriotData)
-	app.run(debug=True, port=3306)
+	app.run(debug=True, port=3000)
 	# ta.start()
 	# tb.start()
 
