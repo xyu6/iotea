@@ -78,6 +78,8 @@ def readByDate(date):
 	conn.close()
 	return r
 
+# Test Data
+
 def insertFakeData(date):
 	list = [(date, '00', '10', '01', '20', '72', '390', '173', '0', '21.0', '22', '99'),
 	(date, '01', '10', '01', '20', '74', '395', '178', '0', '21.0', '22', '99'),
@@ -108,6 +110,3 @@ def insertFakeData(date):
 		q = [i[0], i[1], i[2], i[3], i[4], i[5], '', i[6], i[7], i[8], i[9], i[10], i[11], '', '']
 		insert(q)
 	return
-
-
-# insertFakeData('2018-06-12')
