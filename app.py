@@ -67,9 +67,7 @@ def initday():
 			if not old:
 				QueryTime = [str(day), str(hour)]
 				old = db.readMinMinute(QueryTime)
-			if not old:
-				db.insertFakeData(day)
-				old = db.readMinMinute(QueryTime)
+
 			try:
 				date = str(day)
 
@@ -106,10 +104,7 @@ def initday():
 	if not old:
 		QueryTime = [str(today), '0']
 		old = db.readMinMinute(QueryTime)
-	if not old:
-		db.insertFakeData(today)
-		QueryTime = [str(today), '00']
-		old = db.readMinMinute(QueryTime)
+
 
 	try:
 		date = str(today)
